@@ -113,7 +113,7 @@ useEffect(() => {
           top: '-20px',
 
           animationDelay: '0s',
-          animationDuration: `${2.5 + Math.random() * 2}s`,
+          animationDuration: `${6 + Math.random() * 3}s`,
 
           background:
             i % 5 === 0
@@ -145,7 +145,7 @@ useEffect(() => {
               ? '2px'
               : '999px',
 
-          transform: `rotate(${Math.random() * 360}deg)`,
+          transform: 'none',
         }}
       />
     ))}
@@ -200,13 +200,13 @@ useEffect(() => {
             <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 via-blue-500 to-yellow-400 rounded-[50px] blur-2xl opacity-60 animate-pulse" />
 
             {/* CARD */}
-            <div className="relative rounded-[40px] overflow-hidden border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,215,0,0.5)] w-full max-w-[320px] sm:max-w-md md:max-w-xl backdrop-blur-xl bg-black/30">
+            <div className="relative rounded-[40px] overflow-hidden border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,215,0,0.5)] w-[320px] md:w-[450px] backdrop-blur-xl bg-black/30">
 
               <img
-                src="/figurita.png"
-                alt="Nehitan Pixar"
-                className="w-full h-auto object-cover hover:scale-105 transition duration-700 animate-[float_4s_ease-in-out_infinite]"
-              />
+  src="/figurita.png"
+  alt="Nehitan Pixar"
+  className="w-full h-auto object-contain hover:scale-105 transition duration-700 animate-[float_4s_ease-in-out_infinite]"
+/>
 
             </div>
 
