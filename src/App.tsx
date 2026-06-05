@@ -90,7 +90,7 @@ useEffect(() => {
   preload="auto"
 />
       <div
-  className="absolute inset-0 bg-cover bg-center scale-105"
+  className="absolute inset-0 bg-cover bg-center md:scale-105"
   style={{
     backgroundImage: "url('/fondo.png')",
   }}
@@ -104,7 +104,7 @@ useEffect(() => {
       {showConfetti && (
   <div className="fixed inset-0 pointer-events-none z-[999] overflow-hidden">
 
-    {[...Array(700)].map((_, i) => (
+    {[...Array(1500)].map((_, i) => (
       <div
         key={i}
         className="absolute animate-confetti"
@@ -119,12 +119,12 @@ useEffect(() => {
             i % 5 === 0
               ? '#FFD700'
               : i % 5 === 1
-              ? '#7DD3FC'
+              ? '#04053d'
               : i % 5 === 2
               ? '#38BDF8'
               : i % 5 === 3
               ? '#FFFFFF'
-              : '#E0F2FE',
+              : '#fafafa',
 
           width:
             i % 3 === 0
@@ -176,7 +176,7 @@ useEffect(() => {
           </div>
 
           {/* TITULO */}
-          <h1 className="relative z-10 text-6xl md:text-8xl font-black tracking-wider text-yellow-400 drop-shadow-[0_0_25px_rgba(255,215,0,0.8)]">
+          <h1 className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black tracking-wider text-yellow-400 drop-shadow-[0_0_25px_rgba(255,215,0,0.8)]">
             NEHITAN
           </h1>
           <div className="flex gap-2 mt-3 text-yellow-400 text-xl justify-center">
@@ -200,7 +200,7 @@ useEffect(() => {
             <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 via-blue-500 to-yellow-400 rounded-[50px] blur-2xl opacity-60 animate-pulse" />
 
             {/* CARD */}
-            <div className="relative rounded-[40px] overflow-hidden border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,215,0,0.5)] max-w-md md:max-w-xl backdrop-blur-xl bg-black/30">
+            <div className="relative rounded-[40px] overflow-hidden border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,215,0,0.5)] w-full max-w-[320px] sm:max-w-md md:max-w-xl backdrop-blur-xl bg-black/30">
 
               <img
                 src="/figurita.png"
@@ -230,7 +230,7 @@ useEffect(() => {
               ⏳ EL CUMPLE COMIENZA EN ⏳
             </h3>
 
-            <div className="grid grid-cols-4 gap-4 md:gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
 
               <div className="bg-black/50 rounded-3xl p-4 md:p-6 border border-yellow-400/40 shadow-[0_0_25px_rgba(255,215,0,0.25)] hover:scale-105 transition duration-500">
                 <div className="text-4xl md:text-6xl font-black text-yellow-300">
@@ -340,7 +340,7 @@ ${
     <div className="text-yellow-400 font-bold text-lg">
       📅 FECHA
     </div>
-    <div className="text-yellow-300 text-xl md:text-2xl font-black mt-1">
+    <div className="text-yellow-300 text-lg sm:text-xl md:text-2xl font-black mt-1">
       04/07/2026
     </div>
   </div>
@@ -357,7 +357,7 @@ ${
     <div className="text-yellow-400 font-bold text-lg">
       🏟 LUGAR
     </div>
-    <div className="text-yellow-300 text-xl md:text-2xl font-black mt-1">
+    <div className="text-yellow-300 text-lg sm:text-xl md:text-2xlfont-black mt-1">
       CAMPING U.P.C.N
     </div>
   </div>
@@ -374,7 +374,7 @@ ${
     <div className="text-yellow-400 font-bold text-lg">
       🕒 HORARIO
     </div>
-    <div className="text-yellow-300 text-xl md:text-2xl font-black mt-1">
+    <div className="text-yellow-300 text-lg sm:text-xl md:text-2xl font-black mt-1">
       13:00 - 17:00 hs
     </div>
   </div>
@@ -391,7 +391,7 @@ ${
     <div className="text-yellow-400 font-bold text-lg">
       📍 DIRECCIÓN
     </div>
-    <div className="text-yellow-300 text-xl md:text-2xl font-black mt-1">
+    <div className="text-yellow-300 text-lg sm:text-xl md:text-2xl font-black mt-1">
       Calle 89 y 143
     </div>
   </div>
@@ -413,7 +413,7 @@ ${
                 '_blank'
               )
             }
-            className="bg-yellow-400 hover:bg-yellow-300 hover:scale-110 transition-all duration-500 text-black font-black text-lg md:text-xl px-10 py-5 rounded-3xl shadow-[0_0_30px_rgba(255,215,0,0.6)]"
+            className="w-full md:w-auto bg-yellow-400 hover:bg-yellow-300 hover:scale-110 transition-all duration-500 text-black font-black text-lg md:text-xl px-10 py-5 rounded-3xl shadow-[0_0_30px_rgba(255,215,0,0.6)]"
           >
             📍 VER UBICACIÓN
           </button>
@@ -425,7 +425,7 @@ ${
                 '_blank'
               )
             }
-            className="bg-blue-600 hover:bg-blue-500 hover:scale-110 transition-all duration-500 text-white font-black text-lg md:text-xl px-10 py-5 rounded-3xl shadow-[0_0_30px_rgba(37,99,235,0.7)]"
+            className="w-full md:w-auto bg-blue-600 hover:bg-blue-500 hover:scale-110 transition-all duration-500 text-white font-black text-lg md:text-xl px-10 py-5 rounded-3xl shadow-[0_0_30px_rgba(37,99,235,0.7)]"
           >
             ⚽ CONFIRMAR ASISTENCIA
           </button>
@@ -438,7 +438,7 @@ ${
   {isPlaying ? '🔊' : '🔇'}
 </button>
         <footer className="text-center pb-10 text-gray-400 text-sm">
-          ⚽ Hecho con amor, de Mamá y Papá para el cumpleaños de Nehi⚽
+          ❤️Hecho con amor, de Mamá y Papá para el cumpleaños de Nehi⚽
         </footer>
 
       </div>
