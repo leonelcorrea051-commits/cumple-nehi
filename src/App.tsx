@@ -163,33 +163,19 @@ useEffect(() => {
           </div>
 
           {/* TITULO */}
-          <h1 className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black tracking-wider drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">
-  <span className="text-[#0057D9]">NE</span>
-  <span className="text-yellow-400">HIT</span>
-  <span className="text-[#0057D9]">AN</span>
+          <h1 className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">
+  <span className="text-[#0057D9]">NE</span><span className="text-yellow-400">HIT</span><span className="text-[#0057D9]">AN</span>
 </h1>
           <div className="flex gap-2 mt-3 text-yellow-400 text-xl justify-center">
           ⭐ ⭐ ⭐ ⭐ 
           </div>
           {/* SUBTITULO */}
 <h2 className="relative z-10 mt-5 text-3xl md:text-5xl font-black uppercase tracking-[3px] animate-pulse">
-  <span className="text-sky-300">C</span>
-  <span className="text-white">U</span>
-  <span className="text-sky-300">M</span>
-  <span className="text-white">P</span>
-  <span className="text-sky-300">L</span>
-  <span className="text-white">E</span>
-
-  <span className="inline-block w-4" />
-
+  <span className="text-sky-300">C</span><span className="text-white">U</span><span className="text-sky-300">M</span><span className="text-white">P</span><span className="text-sky-300">L</span><span className="text-white">E</span>
+  {" "}
   <span className="text-sky-300">4</span>
-
-  <span className="inline-block w-4" />
-
-  <span className="text-white">A</span>
-  <span className="text-sky-300">Ñ</span>
-  <span className="text-white">O</span>
-  <span className="text-sky-300">S</span>
+  {" "}
+  <span className="text-white">A</span><span className="text-sky-300">Ñ</span><span className="text-white">O</span><span className="text-sky-300">S</span>
 </h2>
 <div className="relative z-10 mt-6 w-64 h-1 rounded-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent shadow-[0_0_25px_rgba(255,215,0,0.8)]" />
           {/* TEXTO */}
