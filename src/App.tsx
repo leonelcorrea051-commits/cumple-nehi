@@ -163,8 +163,10 @@ useEffect(() => {
           </div>
 
           {/* TITULO */}
-          <h1 className="text-red-500 text-8xl font-black">
-  PRUEBA123
+          <h1 className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black tracking-wider drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">
+  <span className="text-[#0057D9]">NE</span>
+  <span className="text-yellow-400">HIT</span>
+  <span className="text-[#0057D9]">AN</span>
 </h1>
           <div className="flex gap-2 mt-3 text-yellow-400 text-xl justify-center">
           ⭐ ⭐ ⭐ ⭐ 
@@ -178,11 +180,11 @@ useEffect(() => {
   <span className="text-sky-300">L</span>
   <span className="text-white">E</span>
 
-  <span className="mx-3" />
+  <span className="inline-block w-4" />
 
   <span className="text-sky-300">4</span>
 
-  <span className="mx-3" />
+  <span className="inline-block w-4" />
 
   <span className="text-white">A</span>
   <span className="text-sky-300">Ñ</span>
