@@ -89,8 +89,18 @@ useEffect(() => {
   src="/musica.mp3"
   preload="auto"
 />
-      <div
-  className="absolute inset-0 bg-cover bg-center md:scale-105"
+      {/* FONDO MOBILE - foto suelta */}
+<div
+  className="absolute inset-0 bg-cover bg-center block md:hidden"
+  style={{
+    backgroundImage: "url('/fondo-mobile.jpg')",
+    backgroundPosition: "center top",
+  }}
+/>
+
+{/* FONDO DESKTOP - collage */}
+<div
+  className="absolute inset-0 bg-cover bg-center hidden md:block md:scale-105"
   style={{
     backgroundImage: "url('/fondo.png')",
   }}
@@ -104,36 +114,53 @@ useEffect(() => {
       {showConfetti && (
   <div className="fixed inset-0 pointer-events-none z-[999] overflow-hidden">
 
+    {/* PAPELITOS */}
     {[...Array(500)].map((_, i) => (
       <div
-        key={i}
+        key={`papel-${i}`}
         className="absolute animate-confetti"
         style={{
           left: `${Math.random() * 100}%`,
           top: `${Math.random() * -30}%`,
-
           animationDuration: `${4 + Math.random() * 3}s`,
-          animationDelay: `${Math.random() * 1}s`,
-
+          animationDelay: `${Math.random() * 1.5}s`,
           width: `${3 + Math.random() * 5}px`,
           height: `${2 + Math.random() * 4}px`,
-
-          background:
-            Math.random() > 0.5
-              ? '#8ED6FF'
-              : '#FFFFFF',
-
+          background: Math.random() > 0.5 ? '#8ED6FF' : '#FFFFFF',
           opacity: 0.95,
-
           borderRadius: '1px',
-
           filter: 'blur(0.2px)',
-
           transform: `rotate(${Math.random() * 360}deg)`,
         }}
       />
     ))}
-     
+
+    {/* SERPENTINAS */}
+    {[...Array(200)].map((_, i) => {
+      const colors = ['#04015b', '#FFD700', '#04015b', '#04015b', '#FFD700'];
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const width = 3 + Math.random() * 3;
+      const height = 40 + Math.random() * 80;
+      return (
+        <div
+          key={`serpentina-${i}`}
+          className="absolute animate-confetti"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * -40}%`,
+            animationDuration: `${5 + Math.random() * 4}s`,
+            animationDelay: `${Math.random() * 2}s`,
+            width: `${width}px`,
+            height: `${height}px`,
+            background: `linear-gradient(180deg, ${color}, transparent)`,
+            opacity: 0.85,
+            borderRadius: '2px',
+            filter: 'blur(0.3px)',
+            transform: `rotate(${Math.random() * 30 - 15}deg)`,
+          }}
+        />
+      );
+    })}
 
   </div>
 )}
