@@ -245,7 +245,7 @@ useEffect(() => {
   className="relative overflow-hidden rounded-[40px] px-8 md:px-14 py-10 shadow-2xl text-center border border-yellow-400/40"
   style={{
     backgroundImage: "url('/contador-fondo.png')",
-    backgroundSize: "contain",
+    backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
   }}
