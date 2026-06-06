@@ -89,18 +89,8 @@ useEffect(() => {
   src="/musica.mp3"
   preload="auto"
 />
-      {/* FONDO MOBILE - foto suelta */}
-<div
-  className="absolute inset-0 bg-cover bg-center block md:hidden"
-  style={{
-    backgroundImage: "url('/fondo-mobile.jpg')",
-    backgroundPosition: "center top",
-  }}
-/>
-
-{/* FONDO DESKTOP - collage */}
-<div
-  className="absolute inset-0 bg-cover bg-center hidden md:block md:scale-105"
+      <div
+  className="absolute inset-0 bg-cover bg-center md:scale-105"
   style={{
     backgroundImage: "url('/fondo.png')",
   }}
