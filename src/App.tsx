@@ -105,7 +105,7 @@ useEffect(() => {
   <div className="fixed inset-0 pointer-events-none z-[999] overflow-hidden">
 
     {/* PAPELITOS */}
-    {[...Array(500)].map((_, i) => (
+    {[...Array(150)].map((_, i) => (
       <div
         key={`papel-${i}`}
         className="absolute animate-confetti"
@@ -126,7 +126,7 @@ useEffect(() => {
     ))}
 
     {/* SERPENTINAS */}
-    {[...Array(200)].map((_, i) => {
+    {[...Array(60)].map((_, i) => {
       const colors = ['#04015b', '#FFD700', '#04015b', '#04015b', '#FFD700'];
       const color = colors[Math.floor(Math.random() * colors.length)];
       const width = 3 + Math.random() * 3;
