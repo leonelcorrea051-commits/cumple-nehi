@@ -104,54 +104,41 @@ useEffect(() => {
       {showConfetti && (
   <div className="fixed inset-0 pointer-events-none z-[999] overflow-hidden">
 
-    {[...Array(1500)].map((_, i) => (
+    {[...Array(500)].map((_, i) => (
       <div
         key={i}
         className="absolute animate-confetti"
         style={{
           left: `${Math.random() * 100}%`,
-          top: '-20px',
+          top: `${Math.random() * -30}%`,
 
-          animationDelay: '0s',
-          animationDuration: `${6 + Math.random() * 3}s`,
+          animationDuration: `${4 + Math.random() * 3}s`,
+          animationDelay: `${Math.random() * 1}s`,
+
+          width: `${3 + Math.random() * 5}px`,
+          height: `${2 + Math.random() * 4}px`,
 
           background:
-            i % 5 === 0
-              ? '#FFD700'
-              : i % 5 === 1
-              ? '#04053d'
-              : i % 5 === 2
-              ? '#38BDF8'
-              : i % 5 === 3
-              ? '#FFFFFF'
-              : '#fafafa',
+            Math.random() > 0.5
+              ? '#8ED6FF'
+              : '#FFFFFF',
 
-          width:
-            i % 3 === 0
-              ? '10px'
-              : i % 3 === 1
-              ? '3px'
-              : '4px',
+          opacity: 0.95,
 
-          height:
-            i % 3 === 0
-              ? '10px'
-              : i % 3 === 1
-              ? '70px'
-              : '110px',
+          borderRadius: '1px',
 
-          borderRadius:
-            i % 3 === 0
-              ? '2px'
-              : '999px',
+          filter: 'blur(0.2px)',
 
-          transform: 'none',
+          transform: `rotate(${Math.random() * 360}deg)`,
         }}
       />
     ))}
+     
 
   </div>
 )}
+
+  
       <div className="relative z-10">
         
 
@@ -176,21 +163,59 @@ useEffect(() => {
           </div>
 
           {/* TITULO */}
-          <h1 className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black tracking-wider text-yellow-400 drop-shadow-[0_0_25px_rgba(255,215,0,0.8)]">
-            NEHITAN
-          </h1>
+          <h1 className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black tracking-wider drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">
+  <span className="text-[#0057D9]">NE</span>
+  <span className="text-yellow-400">HIT</span>
+  <span className="text-[#0057D9]">AN</span>
+</h1>
           <div className="flex gap-2 mt-3 text-yellow-400 text-xl justify-center">
           ⭐ ⭐ ⭐ ⭐ 
           </div>
           {/* SUBTITULO */}
-          <h2 className="relative z-10 text-3xl md:text-5xl font-black mt-5 text-white">
-            ⚽ CUMPLE 4 AÑOS ⚽
-          </h2>
+<h2 className="relative z-10 mt-5 text-3xl md:text-5xl font-black uppercase tracking-[3px] animate-pulse">
+  <span className="text-sky-300">C</span>
+  <span className="text-white">U</span>
+  <span className="text-sky-300">M</span>
+  <span className="text-white">P</span>
+  <span className="text-sky-300">L</span>
+  <span className="text-white">E</span>
+
+  <span className="mx-3" />
+
+  <span className="text-sky-300">4</span>
+
+  <span className="mx-3" />
+
+  <span className="text-white">A</span>
+  <span className="text-sky-300">Ñ</span>
+  <span className="text-white">O</span>
+  <span className="text-sky-300">S</span>
+</h2>
 <div className="relative z-10 mt-6 w-64 h-1 rounded-full bg-gradient-to-r from-transparent via-yellow-400 to-transparent shadow-[0_0_25px_rgba(255,215,0,0.8)]" />
           {/* TEXTO */}
-          <p className="relative z-10 mt-6 text-lg md:text-2xl text-gray-200 max-w-2xl leading-relaxed">
-            Prepárate para vivir una experiencia inolvidable.
-          </p>
+          <p
+  className="
+    relative z-10
+    mt-6
+    text-lg md:text-2xl
+    max-w-2xl
+    leading-relaxed
+    font-semibold
+    text-white
+    animate-[float_6s_ease-in-out_infinite]
+  "
+>
+  <span
+  className="
+    text-cyan-300
+    font-bold
+    drop-shadow-[0_0_10px_rgba(103,232,249,1)]
+    animate-pulse
+  "
+>
+  Prepárate para vivir una experiencia inolvidable.
+</span>
+</p>
 
           {/* CARD IMAGEN */}
           <div className="relative z-10 mt-14">
@@ -200,12 +225,12 @@ useEffect(() => {
             <div className="absolute -inset-4 bg-gradient-to-r from-yellow-400 via-blue-500 to-yellow-400 rounded-[50px] blur-2xl opacity-60 animate-pulse" />
 
             {/* CARD */}
-            <div className="relative rounded-[40px] overflow-hidden border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,215,0,0.5)] w-[320px] md:w-[450px] backdrop-blur-xl bg-black/30">
+            <div className="relative rounded-[40px] overflow-hidden border-4 border-yellow-400 shadow-[0_0_40px_rgba(255,215,0,0.5)] w-[320px] md:w-[450px] backdrop-blur-xl">
 
               <img
   src="/figurita.png"
   alt="Nehitan Pixar"
-  className="w-full h-auto object-contain hover:scale-105 transition duration-700 animate-[float_4s_ease-in-out_infinite]"
+  className="w-full h-auto object-contain transition duration-700 animate-[float_4s_ease-in-out_infinite]"
 />
 
             </div>
@@ -220,7 +245,7 @@ useEffect(() => {
   className="relative overflow-hidden rounded-[40px] px-8 md:px-14 py-10 shadow-2xl text-center border border-yellow-400/40"
   style={{
     backgroundImage: "url('/contador-fondo.png')",
-    backgroundSize: "cover",
+    backgroundSize: "contain",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
   }}
