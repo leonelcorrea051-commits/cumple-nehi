@@ -23,7 +23,8 @@ export default function App() {
   const [showConfetti, setShowConfetti] = useState(false);
   const eventSectionRef = useRef<HTMLDivElement | null>(null);
   const [showEventCards, setShowEventCards] = useState(false);
-
+  const [vozPlaying, setVozPlaying] = useState(false);
+  const vozRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
   const timer = setInterval(() => {
     setTimeLeft(calculateTimeLeft());
@@ -90,13 +91,14 @@ useEffect(() => {
   preload="auto"
 />
       <div
-  className="absolute inset-0 bg-cover bg-center md:scale-105"
+  className="absolute inset-0 bg-cover bg-center"
   style={{
     backgroundImage: "url('/fondo.png')",
+    backgroundPosition: "center center",
   }}
 />
 
-      <div className="absolute inset-0 bg-black/75" />
+      <div className="absolute inset-0 bg-black/50" />
       <div className="absolute bottom-0 left-0 w-full h-72 bg-gradient-to-t from-white/10 via-white/5 to-transparent blur-3xl opacity-40" />
       <div className="absolute top-[-150px] left-[-100px] w-[450px] h-[450px] bg-blue-500/30 rounded-full blur-[140px]" />
 
@@ -241,7 +243,52 @@ useEffect(() => {
           </div>
 
         </section>
+{/* AUDIO NEHITAN */}
+<section className="px-6 pb-4 flex justify-center">
+  <div className="max-w-2xl w-full text-center rounded-[35px] border border-yellow-400/40 bg-black/40 backdrop-blur-xl p-8">
 
+    <audio
+      ref={vozRef}
+      src="/voz-nehi.mp3"
+      preload="auto"
+      onEnded={() => setVozPlaying(false)}
+    />
+
+    <div className="text-4xl mb-3">🎙️</div>
+
+    <h3 className="text-2xl md:text-3xl font-black text-yellow-400">
+      UN MENSAJE DE NEHI
+    </h3>
+
+    <p className="text-gray-300 mt-2 text-base">
+      ¡Tocá el botón y escuchá al cumpleañero! 🎂
+    </p>
+
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        if (!vozRef.current) return;
+        if (vozPlaying) {
+          vozRef.current.pause();
+          vozRef.current.currentTime = 0;
+          setVozPlaying(false);
+        } else {
+          // Pausa la música si está sonando
+          if (audioRef.current && isPlaying) {
+            audioRef.current.pause();
+            setIsPlaying(false);
+          }
+          vozRef.current.play();
+          setVozPlaying(true);
+        }
+      }}
+      className="mt-6 bg-yellow-400 hover:bg-yellow-300 text-black font-black px-8 py-4 rounded-2xl shadow-[0_0_30px_rgba(255,215,0,0.5)] hover:scale-105 transition-all duration-300 text-lg"
+    >
+      {vozPlaying ? '⏹️ DETENER' : '▶️ ESCUCHAR A NEHI'}
+    </button>
+
+  </div>
+</section>
         <section className="px-6 py-14 flex justify-center">
 
           <div
