@@ -195,7 +195,13 @@ const miniHexagons = [...Array(30)].map((_, i) => {
       <path d="M1750 900 C1450 700 1200 850 900 600"/>
     </g>
 
-    
+    {/* PELOTAS */}
+    <g>
+      <circle cx="180" cy="850" r="7" fill="#fff"/>
+      <circle cx="1720" cy="260" r="7" fill="#fff"/>
+      <circle cx="260" cy="420" r="7" fill="#fff"/>
+      <circle cx="1620" cy="760" r="7" fill="#fff"/>
+    </g>
 
   </svg>
 </div>
