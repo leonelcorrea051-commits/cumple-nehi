@@ -80,6 +80,29 @@ useEffect(() => {
     setIsPlaying(true);
   }
 };
+const miniHexagons = [...Array(80)].map((_, i) => {
+  const x = Math.random() * 1900;
+  const y = Math.random() * 1050;
+  const size = 8 + Math.random() * 18;
+
+  return (
+    <polygon
+      key={i}
+      points={`
+        ${x},${y}
+        ${x + size},${y}
+        ${x + size * 1.5},${y + size}
+        ${x + size},${y + size * 2}
+        ${x},${y + size * 2}
+        ${x - size * 0.5},${y + size}
+      `}
+      fill="none"
+      stroke={Math.random() > 0.5 ? '#00e5ff' : '#ffd700'}
+      strokeWidth="1"
+      opacity={0.12 + Math.random() * 0.15}
+    />
+  );
+});
   return (
     <div
   className="min-h-screen relative overflow-hidden text-white bg-black"
@@ -90,19 +113,209 @@ useEffect(() => {
   src="/musica.mp3"
   preload="auto"
 />
-      <div
-  className="absolute inset-0 bg-cover bg-center"
-  style={{
-    backgroundImage: "url('/fondo.png')",
-    backgroundPosition: "center center",
-  }}
-/>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#02153b] via-[#062b74] to-black" />
 
-      <div className="absolute inset-0 bg-black/50" />
-      <div className="absolute bottom-0 left-0 w-full h-72 bg-gradient-to-t from-white/10 via-white/5 to-transparent blur-3xl opacity-40" />
-      <div className="absolute top-[-150px] left-[-100px] w-[450px] h-[450px] bg-blue-500/30 rounded-full blur-[140px]" />
+{/* ================= FUTBOL ULTRA PREMIUM ================= */}
+<div className="absolute inset-0 pointer-events-none overflow-hidden">
+  
+  {/* Estilos calibrados para un dibujo en vivo más lento y suave */}
+  <style>{`
+    @keyframes dibujarHexagono {
+      0% { stroke-dashoffset: 1000; opacity: 0; }
+      1% { opacity: 1; }
+      75% { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: 0; opacity: 1; }
+    }
+
+    .trazo-vivo polygon, 
+    .trazo-vivo path {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      /* Se aumentó de 4s a 8s para ralentizar el trazo */
+      animation: dibujarHexagono 8s cubic-bezier(0.4, 0, 0.2, 1) forwards infinite;
+    }
+
+    /* Retrasos secuenciales espaciados proporcionalmente */
+    .retardo-pelota polygon { animation-delay: 0.3s; }
+    
+    .retardo-azules polygon:nth-child(1) { animation-delay: 1.0s; }
+    .retardo-azules polygon:nth-child(2) { animation-delay: 2.2s; }
+    .retardo-azules polygon:nth-child(3) { animation-delay: 3.4s; }
+    
+    .retardo-dorados polygon:nth-child(1) { animation-delay: 1.6s; }
+    .retardo-dorados polygon:nth-child(2) { animation-delay: 2.8s; }
+    .retardo-dorados polygon:nth-child(3) { animation-delay: 4.0s; }
+
+    .retardo-pentagonos polygon { animation-delay: 4.8s; }
+    .retardo-minis { animation-delay: 2.5s; }
+  `}</style>
+
+  {/* GLOWS */}
+  <div className="absolute left-[-250px] top-[20%] w-[700px] h-[700px] bg-cyan-400/15 rounded-full blur-[180px]" />
+  <div className="absolute right-[-250px] top-[25%] w-[700px] h-[700px] bg-yellow-400/10 rounded-full blur-[180px]" />
+
+  <svg
+    className="absolute inset-0 w-full h-full"
+    viewBox="0 0 1920 1080"
+    preserveAspectRatio="none"
+  >
+    <defs>
+      <filter id="neonBlue">
+        <feGaussianBlur stdDeviation="5" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+
+      <filter id="neonGold">
+        <feGaussianBlur stdDeviation="5" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    {/* PELOTA GIGANTE CENTRAL */}
+    <g opacity="0.05" className="trazo-vivo retardo-pelota">
+      <polygon
+        points="960,180 1080,250 1080,390 960,460 840,390 840,250"
+        fill="none"
+        stroke="white"
+        strokeWidth="5"
+      />
+      <polygon
+        points="960,470 1040,520 1010,610 910,610 880,520"
+        fill="none"
+        stroke="white"
+        strokeWidth="4"
+      />
+      <polygon
+        points="760,310 840,360 810,450 710,450 680,360"
+        fill="none"
+        stroke="white"
+        strokeWidth="4"
+      />
+      <polygon
+        points="1160,310 1240,360 1210,450 1110,450 1080,360"
+        fill="none"
+        stroke="white"
+        strokeWidth="4"
+      />
+    </g>
+
+    {/* HEXAGONOS GRANDES AZULES */}
+    <g
+      fill="none"
+      stroke="#00e5ff"
+      strokeWidth="2"
+      strokeOpacity="0.45"
+      filter="url(#neonBlue)"
+      className="trazo-vivo retardo-azules"
+    >
+      <polygon points="60,120 180,120 240,225 180,330 60,330 0,225"/>
+      <polygon points="260,420 380,420 440,525 380,630 260,630 200,525"/>
+      <polygon points="150,760 270,760 330,865 270,970 150,970 90,865"/>
+    </g>
+
+    {/* HEXAGONOS GRANDES DORADOS */}
+    <g
+      fill="none"
+      stroke="#ffd700"
+      strokeWidth="2"
+      strokeOpacity="0.45"
+      filter="url(#neonGold)"
+      className="trazo-vivo retardo-dorados"
+    >
+      <polygon points="1680,120 1800,120 1860,225 1800,330 1680,330 1620,225"/>
+      <polygon points="1480,520 1600,520 1660,625 1600,730 1480,730 1420,625"/>
+      <polygon points="1650,760 1770,760 1830,865 1770,970 1650,970 1590,865"/>
+    </g>
+
+    {/* MINI HEXAGONOS AUTOMÁTICOS */}
+    <g filter="url(#neonBlue)" className="trazo-vivo retardo-minis">
+      {miniHexagons}
+    </g>
+
+    {/* PENTAGONOS */}
+    <g
+      fill="none"
+      stroke="#ffffff"
+      strokeOpacity="0.16"
+      strokeWidth="1.5"
+      className="trazo-vivo retardo-pentagonos"
+    >
+      <polygon points="620,220 650,195 680,220 668,255 632,255"/>
+      <polygon points="1260,320 1290,295 1320,320 1308,355 1272,355"/>
+      <polygon points="420,620 450,595 480,620 468,655 432,655"/>
+      <polygon points="1520,620 1550,595 1580,620 1568,655 1532,655"/>
+    </g>
+
+    {/* CONEXIONES */}
+    <g
+      stroke="#00e5ff"
+      strokeWidth="1"
+      strokeOpacity="0.15"
+    >
+      <line x1="510" y1="166" x2="790" y2="116"/>
+      <line x1="790" y1="116" x2="1130" y2="186"/>
+      <line x1="1130" y1="186" x2="1410" y2="146"/>
+
+      <line x1="650" y1="326" x2="910" y2="276"/>
+      <line x1="910" y1="276" x2="1250" y2="286"/>
+    </g>
+
+    {/* NODOS LUMINOSOS */}
+    <g>
+      <circle cx="790" cy="116" r="4" fill="#00e5ff"/>
+      <circle cx="1130" cy="186" r="4" fill="#ffd700"/>
+      <circle cx="910" cy="276" r="4" fill="#00e5ff"/>
+      <circle cx="1250" cy="286" r="4" fill="#ffd700"/>
+    </g>
+
+    {/* RECORRIDOS DE PELOTA */}
+    <g
+      fill="none"
+      stroke="#ffffff"
+      strokeWidth="2"
+      strokeDasharray="14 10"
+      strokeOpacity="0.18"
+    >
+      <path d="M180 850 C420 700 700 900 920 650"/>
+      <path d="M1720 260 C1500 450 1300 320 1080 520"/>
+      <path d="M260 420 C600 250 920 340 1260 170"/>
+      <path d="M1620 760 C1350 920 950 920 700 760"/>
+
+      <path d="M220 950 C500 820 780 940 1050 700"/>
+      <path d="M1800 180 C1500 250 1350 500 900 450"/>
+      <path d="M350 200 C700 80 1200 80 1650 250"/>
+      <path d="M1750 900 C1450 700 1200 850 900 600"/>
+    </g>
+
+    {/* PELOTAS */}
+    <g>
+      <circle cx="180" cy="850" r="7" fill="#fff"/>
+      <circle cx="1720" cy="260" r="7" fill="#fff"/>
+      <circle cx="260" cy="420" r="7" fill="#fff"/>
+      <circle cx="1620" cy="760" r="7" fill="#fff"/>
+    </g>
+
+  </svg>
+</div>
+
+{/* ================= FIN ULTRA PREMIUM ================= */}
+```
+
+
+      {/*
+<div className="absolute top-[-150px] left-[-100px] w-[450px] h-[450px] bg-blue-500/30 rounded-full blur-[140px]" />
+
+<div className="absolute bottom-[-150px] right-[-100px] w-[450px] h-[450px] bg-yellow-400/20 rounded-full blur-[140px]" />
+
 
       <div className="absolute bottom-[-150px] right-[-100px] w-[450px] h-[450px] bg-yellow-400/20 rounded-full blur-[140px]" />
+      */}
       {showConfetti && (
   <div className="fixed inset-0 pointer-events-none z-[999] overflow-hidden">
 
@@ -163,14 +376,13 @@ useEffect(() => {
 
         <section className="relative flex flex-col items-center justify-center text-center px-6 pt-16 pb-10 overflow-hidden">
 
-          {/* GLOW TOP */}
-          <div className="absolute top-[-120px] w-[500px] h-[500px] bg-yellow-400/20 rounded-full blur-[120px]" />
+          {/*
+<div className="absolute top-[-120px] w-[500px] h-[500px] bg-yellow-400/20 rounded-full blur-[120px]" />
 
-          {/* GLOW LEFT */}
-          <div className="absolute left-[-120px] top-[200px] w-[300px] h-[300px] bg-blue-500/20 rounded-full blur-[100px]" />
+<div className="absolute left-[-120px] top-[200px] w-[300px] h-[300px] bg-blue-500/20 rounded-full blur-[100px]" />
 
-          {/* GLOW RIGHT */}
-          <div className="absolute right-[-120px] top-[250px] w-[300px] h-[300px] bg-yellow-400/20 rounded-full blur-[100px]" />
+<div className="absolute right-[-120px] top-[250px] w-[300px] h-[300px] bg-yellow-400/20 rounded-full blur-[100px]" />
+*/}
 
           {/* BADGE */}
           <div className="relative z-10 mb-6 animate-pulse">
@@ -182,7 +394,7 @@ useEffect(() => {
           </div>
 
           {/* TITULO */}
-          <h1 className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">
+          <h1 translate="no" className="relative z-10 text-5xl sm:text-6xl md:text-8xl font-black drop-shadow-[0_0_25px_rgba(255,255,255,0.5)]">
   <span className="text-[#0057D9]">NE</span><span className="text-yellow-400">HIT</span><span className="text-[#0057D9]">AN</span>
 </h1>
           <div className="flex gap-2 mt-3 text-yellow-400 text-xl justify-center">
@@ -245,7 +457,18 @@ useEffect(() => {
         </section>
 {/* AUDIO NEHITAN */}
 <section className="px-6 pb-4 flex justify-center">
-  <div className="max-w-2xl w-full text-center rounded-[35px] border border-yellow-400/40 bg-black/40 backdrop-blur-xl p-8">
+  <div
+  className="relative overflow-hidden max-w-2xl w-full text-center rounded-[35px] border border-yellow-400/40 p-8 shadow-2xl"
+  style={{
+    backgroundImage: "url('/fondo-nehi-widget.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  }}
+>
+  <div className="absolute inset-0 bg-black/70" />
+
+  <div className="relative z-10">
 
     <audio
       ref={vozRef}
@@ -254,13 +477,29 @@ useEffect(() => {
       onEnded={() => setVozPlaying(false)}
     />
 
-    <div className="text-4xl mb-3">🎙️</div>
+    <div
+  className="
+    text-6xl
+    mb-4
+    drop-shadow-[0_0_25px_rgba(255,215,0,1)]
+  "
+>
+  🎙️
+</div>
 
     <h3 className="text-2xl md:text-3xl font-black text-yellow-400">
       UN MENSAJE DE NEHI
     </h3>
 
-    <p className="text-gray-300 mt-2 text-base">
+    <p
+  className="
+    mt-3
+    text-lg
+    font-semibold
+    text-white
+    drop-shadow-[0_0_12px_rgba(255,255,255,0.9)]
+  "
+>
       ¡Tocá el botón y escuchá al cumpleañero! 🎂
     </p>
 
@@ -287,6 +526,7 @@ useEffect(() => {
       {vozPlaying ? '⏹️ DETENER' : '▶️ ESCUCHAR A NEHI'}
     </button>
 
+  </div>
   </div>
 </section>
         <section className="px-6 py-14 flex justify-center">
@@ -348,31 +588,79 @@ useEffect(() => {
         </section>
 <section className="px-6 pb-10 flex justify-center">
 
-  <div className="max-w-2xl w-full text-center rounded-[35px] border border-yellow-400/40 bg-black/40 backdrop-blur-xl p-8">
+  <div
+    className="relative overflow-hidden max-w-2xl w-full text-center rounded-[35px] border border-yellow-400/40 p-8 shadow-2xl"
+    style={{
+      backgroundImage: "url('/recordatorio-fondo.png')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+    }}
+  >
 
-    <div className="text-4xl mb-3">
-      🔔
+    {/* OSCURECER FONDO */}
+    <div className="absolute inset-0 bg-black/75" />
+
+    {/* CONTENIDO */}
+    <div className="relative z-10">
+
+      <div className="text-6xl mb-4 drop-shadow-[0_0_25px_rgba(255,215,0,1)]">
+        🔔
+      </div>
+
+      <h3
+        className="
+          text-3xl
+          md:text-4xl
+          font-black
+          text-yellow-300
+          tracking-wide
+          drop-shadow-[0_0_20px_rgba(255,215,0,1)]
+        "
+      >
+        NO TE OLVIDES DEL GRAN DÍA
+      </h3>
+
+      <p
+        className="
+          mt-4
+          text-white
+          text-lg
+          md:text-xl
+          font-semibold
+          drop-shadow-[0_0_12px_rgba(255,255,255,0.9)]
+        "
+      >
+        Agendá el cumpleaños ahora y recibí un recordatorio automático.
+      </p>
+
+      <button
+        onClick={() =>
+          window.open(
+            'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+de+Nehitan&dates=20260704T160000Z/20260704T200000Z&details=Te+esperamos+en+el+cumpleaños+de+Nehitan&location=Camping+UPCN+La+Plata',
+            '_blank'
+          )
+        }
+        className="
+          mt-8
+          bg-yellow-400
+          hover:bg-yellow-300
+          text-black
+          font-black
+          text-xl
+          px-10
+          py-5
+          rounded-2xl
+          shadow-[0_0_40px_rgba(255,215,0,0.9)]
+          hover:scale-110
+          transition-all
+          duration-300
+        "
+      >
+        📅 AGENDAR RECORDATORIO
+      </button>
+
     </div>
-
-    <h3 className="text-2xl md:text-3xl font-black text-yellow-400">
-      NO TE OLVIDES DEL GRAN DÍA
-    </h3>
-
-    <p className="text-gray-300 mt-4 text-lg">
-      
-    </p>
-
-    <button
-      onClick={() =>
-        window.open(
-          'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Cumpleaños+de+Nehitan&dates=20260704T160000Z/20260704T200000Z&details=Te+esperamos+en+el+cumpleaños+de+Nehitan&location=Camping+UPCN+La+Plata',
-          '_blank'
-        )
-      }
-      className="mt-6 bg-yellow-400 hover:bg-yellow-300 text-black font-black px-8 py-4 rounded-2xl shadow-[0_0_30px_rgba(255,215,0,0.5)] hover:scale-105 transition-all duration-300"
-    >
-      📅 AGENDAR RECORDATORIO
-    </button>
 
   </div>
 
@@ -393,7 +681,7 @@ useEffect(() => {
   >
 
     {/* OSCURECER FONDO */}
-    <div className="absolute inset-0 bg-black/45" />
+    <div className="absolute inset-0 bg-black/25" />
 
     {/* CONTENIDO */}
     <div className="relative z-10">
