@@ -80,7 +80,8 @@ useEffect(() => {
     setIsPlaying(true);
   }
 };
-const miniHexagons = [...Array(80)].map((_, i) => {
+
+const miniHexagons = [...Array(30)].map((_, i) => {
   const x = Math.random() * 1900;
   const y = Math.random() * 1050;
   const size = 8 + Math.random() * 18;
@@ -115,42 +116,10 @@ const miniHexagons = [...Array(80)].map((_, i) => {
 />
       <div className="absolute inset-0 bg-gradient-to-b from-[#02153b] via-[#062b74] to-black" />
 
-{/* ================= FUTBOL ULTRA PREMIUM ================= */}
+{/* ================= FUTBOL ULTRA PREMIUM (ESTÁTICO RE-OPTIMIZADO) ================= */}
 <div className="absolute inset-0 pointer-events-none overflow-hidden">
   
-  {/* Estilos calibrados para un dibujo en vivo más lento y suave */}
-  <style>{`
-    @keyframes dibujarHexagono {
-      0% { stroke-dashoffset: 1000; opacity: 0; }
-      1% { opacity: 1; }
-      75% { stroke-dashoffset: 0; opacity: 1; }
-      100% { stroke-dashoffset: 0; opacity: 1; }
-    }
-
-    .trazo-vivo polygon, 
-    .trazo-vivo path {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      /* Se aumentó de 4s a 8s para ralentizar el trazo */
-      animation: dibujarHexagono 8s cubic-bezier(0.4, 0, 0.2, 1) forwards infinite;
-    }
-
-    /* Retrasos secuenciales espaciados proporcionalmente */
-    .retardo-pelota polygon { animation-delay: 0.3s; }
-    
-    .retardo-azules polygon:nth-child(1) { animation-delay: 1.0s; }
-    .retardo-azules polygon:nth-child(2) { animation-delay: 2.2s; }
-    .retardo-azules polygon:nth-child(3) { animation-delay: 3.4s; }
-    
-    .retardo-dorados polygon:nth-child(1) { animation-delay: 1.6s; }
-    .retardo-dorados polygon:nth-child(2) { animation-delay: 2.8s; }
-    .retardo-dorados polygon:nth-child(3) { animation-delay: 4.0s; }
-
-    .retardo-pentagonos polygon { animation-delay: 4.8s; }
-    .retardo-minis { animation-delay: 2.5s; }
-  `}</style>
-
-  {/* GLOWS */}
+  {/* GLOWS DE FONDO */}
   <div className="absolute left-[-250px] top-[20%] w-[700px] h-[700px] bg-cyan-400/15 rounded-full blur-[180px]" />
   <div className="absolute right-[-250px] top-[25%] w-[700px] h-[700px] bg-yellow-400/10 rounded-full blur-[180px]" />
 
@@ -177,91 +146,31 @@ const miniHexagons = [...Array(80)].map((_, i) => {
       </filter>
     </defs>
 
-    {/* PELOTA GIGANTE CENTRAL */}
-    <g opacity="0.05" className="trazo-vivo retardo-pelota">
-      <polygon
-        points="960,180 1080,250 1080,390 960,460 840,390 840,250"
-        fill="none"
-        stroke="white"
-        strokeWidth="5"
-      />
-      <polygon
-        points="960,470 1040,520 1010,610 910,610 880,520"
-        fill="none"
-        stroke="white"
-        strokeWidth="4"
-      />
-      <polygon
-        points="760,310 840,360 810,450 710,450 680,360"
-        fill="none"
-        stroke="white"
-        strokeWidth="4"
-      />
-      <polygon
-        points="1160,310 1240,360 1210,450 1110,450 1080,360"
-        fill="none"
-        stroke="white"
-        strokeWidth="4"
-      />
-    </g>
+   
 
     {/* HEXAGONOS GRANDES AZULES */}
-    <g
-      fill="none"
-      stroke="#00e5ff"
-      strokeWidth="2"
-      strokeOpacity="0.45"
-      filter="url(#neonBlue)"
-      className="trazo-vivo retardo-azules"
-    >
+    <g fill="none" stroke="#00e5ff" strokeWidth="2" strokeOpacity="0.45" filter="url(#neonBlue)">
       <polygon points="60,120 180,120 240,225 180,330 60,330 0,225"/>
       <polygon points="260,420 380,420 440,525 380,630 260,630 200,525"/>
       <polygon points="150,760 270,760 330,865 270,970 150,970 90,865"/>
     </g>
 
     {/* HEXAGONOS GRANDES DORADOS */}
-    <g
-      fill="none"
-      stroke="#ffd700"
-      strokeWidth="2"
-      strokeOpacity="0.45"
-      filter="url(#neonGold)"
-      className="trazo-vivo retardo-dorados"
-    >
+    <g fill="none" stroke="#ffd700" strokeWidth="2" strokeOpacity="0.45" filter="url(#neonGold)">
       <polygon points="1680,120 1800,120 1860,225 1800,330 1680,330 1620,225"/>
       <polygon points="1480,520 1600,520 1660,625 1600,730 1480,730 1420,625"/>
       <polygon points="1650,760 1770,760 1830,865 1770,970 1650,970 1590,865"/>
     </g>
 
-    {/* MINI HEXAGONOS AUTOMÁTICOS */}
-    <g filter="url(#neonBlue)" className="trazo-vivo retardo-minis">
-      {miniHexagons}
-    </g>
+    
 
-    {/* PENTAGONOS */}
-    <g
-      fill="none"
-      stroke="#ffffff"
-      strokeOpacity="0.16"
-      strokeWidth="1.5"
-      className="trazo-vivo retardo-pentagonos"
-    >
-      <polygon points="620,220 650,195 680,220 668,255 632,255"/>
-      <polygon points="1260,320 1290,295 1320,320 1308,355 1272,355"/>
-      <polygon points="420,620 450,595 480,620 468,655 432,655"/>
-      <polygon points="1520,620 1550,595 1580,620 1568,655 1532,655"/>
-    </g>
+    
 
     {/* CONEXIONES */}
-    <g
-      stroke="#00e5ff"
-      strokeWidth="1"
-      strokeOpacity="0.15"
-    >
+    <g stroke="#00e5ff" strokeWidth="1" strokeOpacity="0.15">
       <line x1="510" y1="166" x2="790" y2="116"/>
       <line x1="790" y1="116" x2="1130" y2="186"/>
       <line x1="1130" y1="186" x2="1410" y2="146"/>
-
       <line x1="650" y1="326" x2="910" y2="276"/>
       <line x1="910" y1="276" x2="1250" y2="286"/>
     </g>
@@ -275,31 +184,18 @@ const miniHexagons = [...Array(80)].map((_, i) => {
     </g>
 
     {/* RECORRIDOS DE PELOTA */}
-    <g
-      fill="none"
-      stroke="#ffffff"
-      strokeWidth="2"
-      strokeDasharray="14 10"
-      strokeOpacity="0.18"
-    >
+    <g fill="none" stroke="#ffffff" strokeWidth="2" strokeDasharray="14 10" strokeOpacity="0.18">
       <path d="M180 850 C420 700 700 900 920 650"/>
       <path d="M1720 260 C1500 450 1300 320 1080 520"/>
       <path d="M260 420 C600 250 920 340 1260 170"/>
       <path d="M1620 760 C1350 920 950 920 700 760"/>
-
       <path d="M220 950 C500 820 780 940 1050 700"/>
       <path d="M1800 180 C1500 250 1350 500 900 450"/>
       <path d="M350 200 C700 80 1200 80 1650 250"/>
       <path d="M1750 900 C1450 700 1200 850 900 600"/>
     </g>
 
-    {/* PELOTAS */}
-    <g>
-      <circle cx="180" cy="850" r="7" fill="#fff"/>
-      <circle cx="1720" cy="260" r="7" fill="#fff"/>
-      <circle cx="260" cy="420" r="7" fill="#fff"/>
-      <circle cx="1620" cy="760" r="7" fill="#fff"/>
-    </g>
+    
 
   </svg>
 </div>
@@ -320,7 +216,7 @@ const miniHexagons = [...Array(80)].map((_, i) => {
   <div className="fixed inset-0 pointer-events-none z-[999] overflow-hidden">
 
     {/* PAPELITOS */}
-    {[...Array(150)].map((_, i) => (
+    {[...Array(70)].map((_, i) => (
       <div
         key={`papel-${i}`}
         className="absolute animate-confetti"
@@ -341,7 +237,7 @@ const miniHexagons = [...Array(80)].map((_, i) => {
     ))}
 
     {/* SERPENTINAS */}
-    {[...Array(60)].map((_, i) => {
+    {[...Array(40)].map((_, i) => {
       const colors = ['#04015b', '#FFD700', '#04015b', '#04015b', '#FFD700'];
       const color = colors[Math.floor(Math.random() * colors.length)];
       const width = 3 + Math.random() * 3;
